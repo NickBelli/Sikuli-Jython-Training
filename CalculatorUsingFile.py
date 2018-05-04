@@ -32,7 +32,7 @@ def returnMessage2(myResult):
 popup("Welcome to the Calculator!")
 
 ##Read a row of data from the selected csv file into an array, and then pass the array to readable variables ##
-with open("C:\Users\BELLN014\Desktop\CalculatorTest.csv") as csvfile:
+with open("Absolute File Path") as csvfile:
     getRow = _csv.reader(csvfile)
     #getRow.next()
     currentRow = []
