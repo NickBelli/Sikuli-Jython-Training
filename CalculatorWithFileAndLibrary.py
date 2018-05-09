@@ -1,26 +1,15 @@
 ################################################################
-##   Simple Calculator App with File Usage (Jython)           ##
+##   Simple Calculator App with Files and Libraries (Jython)  ##
 ##   Author: Nick Belli                                       ##
 ##   Date: 04/25/2018                                         ##
 ##   Uncomment popup boxes for testing and training purposes  ##
 ##   Docs are delimited with "## ", commented code is "#"     ##
 ################################################################
 
-## Import csv module to be able to open Excel (csv) files ##
+## Import csv module to be able to open Excel (csv) files ## 
+## and MathFunctions to access that library               ##
 import _csv
-
-## Define program functions in small actionable parts ##
-def addTwoNumbers(myNum1, myNum2):
-    return int(myNum1) + int(myNum2)
-
-def subtractTwoNumbers(myNum1, myNum2):
-    return int(myNum1) - int(myNum2)
-
-def multiplyTwoNumbers(myNum1, myNum2):
-    return int(myNum1) * int(myNum2)
-
-def divideTwoNumbers(myNum1, myNum2):
-    return int(myNum1) / int(myNum2)
+import MathFunctions
 
 def returnMessage():
     return 'My result is: ' + str(myResult)
@@ -34,7 +23,6 @@ popup("Welcome to the Calculator!")
 ##Read a row of data from the selected csv file into an array, and then pass the array to readable variables ##
 with open("C:\Users\BELLN014\Desktop\Sikuli Scripts\CalculatorTest.csv") as csvfile:
     getRow = _csv.reader(csvfile)
-    #getRow.next()
     currentRow = []
     for row in getRow:
         currentRow = row
@@ -50,18 +38,19 @@ with open("C:\Users\BELLN014\Desktop\Sikuli Scripts\CalculatorTest.csv") as csvf
     
         if myNum1.isnumeric() and myNum2.isnumeric():
             if userSelection == "Add":
-                myResult = addTwoNumbers(myNum1, myNum2)
+                myResult = MathFunctions.addTwoNumbers(myNum1, myNum2)
                 popup(returnMessage())
+            #Use the print statements to show that the program continues
             elif userSelection == "Subtract":
-                myResult = subtractTwoNumbers(myNum1, myNum2)
+                myResult = MathFunctions.subtractTwoNumbers(myNum1, myNum2)
                 popup(returnMessage())
             elif userSelection == "Multiply":
-                popup(returnMessage2(multiplyTwoNumbers(myNum1, myNum2)))
+                popup(returnMessage2(MathFunctions.multiplyTwoNumbers(myNum1, myNum2)))
             elif userSelection == "Divide":
                 if int(myNum2) == 0:
                     popup("You can't divide by Zero!")
                 else:
-                    myResult = divideTwoNumbers(myNum1, myNum2)
+                    myResult = MathFunctions.divideTwoNumbers(myNum1, myNum2)
                     popup(returnMessage())
         else: 
             popup("Please check the file")
